@@ -1,0 +1,2 @@
+# Simplework
+laravel news-portal
