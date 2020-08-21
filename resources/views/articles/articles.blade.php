@@ -16,9 +16,9 @@
 			@endif
 		@forelse ($articles as $article)
 			<div class="title">
-				<a href="/articles/{{ $article -> id }}" style="text-decoration:none"><h2>{{ $article ->title}}</h2></a>
+				<a href="/articles/{{ $article -> id }}" style="text-decoration:none"><h2 class="mb-2">{{ $article ->title}}</h2></a>
 				<div class="d-flex justify-content-between">
-				<p >Written by <a href="/articles?written_by={{ $article -> User -> name }}">{{ $article -> User -> name }}</a></p>
+				<p>Written by <a href="/articles?written_by={{ $article -> User -> name }}">{{ $article -> User -> name }}</a></p>
 				<p >{{$article->created_at->format('M d Y')}}</p>
 				</div>
 				<span class="byline">{{ $article ->excerpt}}</span>

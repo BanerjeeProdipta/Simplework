@@ -1,4 +1,4 @@
-<title>Home</title>
+<title>Create New Article</title>
 
 @include('layouts.nav')
 <body>

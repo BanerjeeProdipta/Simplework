@@ -37271,6 +37271,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+// import Echo from 'laravel-echo'
+// window.Pusher = require('pusher-js');
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: '5f53220af298e18653c8',
+//     cluster: 'ap2'
+// });
 
 /***/ }),
 
@@ -37292,8 +37299,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ASUS\Documents\Simplework\simplework\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ASUS\Documents\Simplework\simplework\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Simplework Git\Simplework\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Simplework Git\Simplework\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

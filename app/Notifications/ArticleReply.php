@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class ArticleReply extends Notification
 {
@@ -32,7 +33,7 @@ class ArticleReply extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'broadcast'];
     }
 
     /**
@@ -50,7 +51,15 @@ class ArticleReply extends Notification
             ->action('Notification Action', url('/'))
             ->line('Thank you!');
     }
-
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'article_id' => $this->article_id,
+            'article' => $this->article,
+            'commenter' => $this->commenter,
+            'reply' => $this->reply,
+        ]);
+    }
     /**
      * Get the array representation of the notification.
      *

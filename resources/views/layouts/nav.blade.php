@@ -11,7 +11,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="http://unpkg.com/turbolinks"></script>
+    <script src="http://unpkg.com/turbolinks"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//js.pusher.com/3.1/pusher.min.js"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -53,6 +56,15 @@
                         </li>
                     @endif
                 @else
+                    <li class="dropdown dropdown-notifications">
+                      <a href="#notifications-panel" data-toggle="dropdown" >
+                        <i data-count="0" class="nav-link"> New Article (<span class="notif-count">0</span>)</i>
+                      </a>
+                      <div class="dropdown-container">
+                        <ul class="dropdown-menu">
+                        </ul>
+                      </div>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -76,3 +88,4 @@
         </div>
     </div>
 </nav>
+<script type="text/javascript" src="{{ asset('js/new-article.js') }}" ></script>

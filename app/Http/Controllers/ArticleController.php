@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use App\Article;
+use App\Events\NewArticle;
 use App\Tag;
 use App\User;
 use App\Reply;
@@ -71,15 +72,9 @@ class ArticleController extends Controller
         }
         $article->save();
         $article->tags()->attach(request('tags'));
+        event(new \App\Events\NewArticle(auth()->user()->name));
         return redirect('/articles')->with('success','Your article has been saved');
-        // $article = auth()->user()->articles()->create($article);
-        // $article = new Article($this->validateArticle());
-        // $article->user_id = 6;
-        // $article->save();
-        // $article->tags()->attach(request('tags'));
-        // return redirect('/articles');
-        // Article::create( $this->validateArticle());
-        // return redirect()->back();
+       
     }
 
     public function edit( Article $article ) {
@@ -93,7 +88,7 @@ class ArticleController extends Controller
         return redirect('/articles/'.$article->id)->with('warning','Your article has been updated');
       }
 
-      public function validateArticle() { //As both store and update validation are same 
+      public function validateArticle() { 
           return request()->validate([
             'title' => 'required',
             'excerpt' => 'required',
