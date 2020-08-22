@@ -5,7 +5,7 @@ var notificationsCount     = parseInt(notificationsCountElem.data('count'));
 var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
 if (notificationsCount <= 0) {
-//   notificationsWrapper.hide();
+  // notificationsWrapper.hide();
 }
 
 // Enable pusher logging - don't include this in production

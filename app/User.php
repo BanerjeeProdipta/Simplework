@@ -51,6 +51,7 @@ class User extends Authenticatable
     {
         return '+880 1303 848453';
     }
+    
 
 }
 

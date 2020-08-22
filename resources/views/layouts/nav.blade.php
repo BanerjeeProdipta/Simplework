@@ -65,11 +65,19 @@
                         </ul>
                       </div>
                     </li>
+                    <li class="dropdown dropdown-comment">
+                        <a href="#comment-panel" data-toggle="dropdown" >
+                          <i data-count="0" class="nav-link"> New Comment (<span class="comment-count">0</span>)</i>
+                        </a>
+                        <div class="dropdown-container">
+                          <ul class="dropdown-menu">
+                          </ul>
+                        </div>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/profile" >{{ __('My profile') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -88,4 +96,11 @@
         </div>
     </div>
 </nav>
+
+@auth
+<script>
+    var userId = {{ auth()->id() }};
+</script>    
+@endauth
 <script type="text/javascript" src="{{ asset('js/new-article.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/new-comment.js') }}" ></script>
