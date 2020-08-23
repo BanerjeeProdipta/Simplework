@@ -62,7 +62,7 @@
                     <ul>
                     @forelse ($replies as $reply)
                     <li>
-                        <a href="/articles/{{ $reply -> article_id }}"> {{ $reply-> reply }}</a>
+                    <a href="/articles/{{ $reply -> article_id }}"> {{ $reply-> reply }} on {{$reply->article->title}}</a>
                     </li>
                     @empty
                         You have not commented on any article yet!

@@ -80,7 +80,8 @@ class ArticleController extends Controller
     public function edit( Article $article ) {
         $this->authorize('update', $article);
         $articles = auth()->user()->articles;
-        return view('articles.edit',compact('articles','article'));
+        $unreadNotifications = auth()->user()->unreadNotifications;
+        return view('articles.edit',compact('articles','article','unreadNotifications'));
     }
 
     public function update( Article $article) {

@@ -12,14 +12,15 @@ class PaymentController extends Controller
 {
     public function create(){
         $articles = auth()->user()->articles;
+        $unreadNotifications = auth()->user()->unreadNotifications;
         return view('payment', [
-        'articles' => $articles
+        'articles' => $articles,
+        'unreadNotifications' => $unreadNotifications
         ]);
     }
     
     public function store(){
         //Notification::send(request()->user(), new PaymentReceived() );
-        //user()->notify(new PaymentReceived());
         request()->user()->notify(new PaymentReceived(10));
         return redirect('payment')
         ->with('success','Payment Successful!');

@@ -12,7 +12,8 @@ class ContactController extends Controller
 {
     public function create() {
         $articles = Auth::user()->firstOrFail()->articles;
-        return view('contact', ['articles' => $articles]);
+        $unreadNotifications = auth()->user()->unreadNotifications;
+        return view('contact', compact('articles','unreadNotifications'));
     }
 
     public function store() {

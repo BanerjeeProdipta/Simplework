@@ -29,10 +29,11 @@ class HomeController extends Controller
     public function index( )
     {
         $articles = auth()->user()->articles;
-  
+        $unreadNotifications = auth()->user()->unreadNotifications;
         return view('home',[
             'tags' => Tag::all(),
             'articles' => $articles,
+            'unreadNotifications' => $unreadNotifications
             ]);
 
     }

@@ -60,19 +60,36 @@
                       <a href="#notifications-panel" data-toggle="dropdown" >
                         <i data-count="0" class="nav-link"> New Article (<span class="notif-count">0</span>)</i>
                       </a>
-                      <div class="dropdown-container">
+                      <div class="dropdown-container">                                
                         <ul class="dropdown-menu">
                         </ul>
                       </div>
                     </li>
                     <li class="dropdown dropdown-comment">
-                        <a href="#comment-panel" data-toggle="dropdown" >
-                          <i data-count="0" class="nav-link"> New Comment (<span class="comment-count">0</span>)</i>
-                        </a>
-                        <div class="dropdown-container">
-                          <ul class="dropdown-menu">
-                          </ul>
-                        </div>
+                        @forelse ($unreadNotifications as $notification)
+                                {{$unreadNotifications -> markAsRead()}}
+                            @if( $notification->type == 'App\Notifications\ArticleReply')
+                                <a href="#comment-panel" data-toggle="dropdown" >
+                                    <i comment-data-count={{$unreadNotifications->count()}} class="nav-link"> New Comment (<span class="comment-count">{{$unreadNotifications->count()}}</span>)</i>
+                                </a>
+                                <div class="dropdown-container">
+                                    <ul class="dropdown-menu">
+                                        <li class="notification active px-3">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                <a href="/articles/{{$notification->data['article_id'] }}">
+                                                <strong>{{$notification->data['commenter'] }}</strong> commented <strong>{{$notification->data['reply'] }}</strong> on <strong>{{$notification->data['article'] }}</strong>
+                                                </a>
+                                                <div class="notification-meta">
+                                                    <small class="timestamp">about a minute ago</small>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
+                        @endforeach
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

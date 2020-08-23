@@ -5,7 +5,7 @@ var notificationsCount     = parseInt(notificationsCountElem.data('count'));
 var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
 if (notificationsCount <= 0) {
-  // notificationsWrapper.hide();
+  notificationsWrapper.hide();
 }
 
 // Enable pusher logging - don't include this in production
@@ -22,7 +22,6 @@ var channel = pusher.subscribe('new-article');
 // Bind a function to a Event (the full Laravel class)
 channel.bind('App\\Events\\NewArticle', function(data) {
   var existingNotifications = notifications.html();
-  var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
   var newNotificationHtml = `
     <li class="notification active px-3">
         <div class="media">

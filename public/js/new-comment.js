@@ -1,7 +1,9 @@
+authEndpoint: "../broadcasting/auth"
+
 var commentNotificationsWrapper   = $('.dropdown-comment');
 var commentNotificationsToggle    = commentNotificationsWrapper.find('a[data-toggle]');
-var commentNotificationsCountElem = commentNotificationsToggle.find('i[data-count]');
-var commentNotificationsCount     = parseInt(commentNotificationsCountElem.data('count'));
+var commentNotificationsCountElem = commentNotificationsToggle.find('i[comment-data-count]');
+var commentNotificationsCount     = parseInt(commentNotificationsCountElem.data('comment-count'));
 var commentNotifications          = commentNotificationsWrapper.find('ul.dropdown-menu');
 
 if (commentNotificationsCount <= 0) {
@@ -17,12 +19,11 @@ var pusher = new Pusher('5f53220af298e18653c8', {
 });
 
 // Subscribe to the channel we specified in our Laravel Event
-var channel = pusher.subscribe('private-App.User.' .userId);
+var channel = pusher.subscribe('private-App.User.'+userId);
 
 // Bind a function to a Event (the full Laravel class)
 channel.bind('Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function(data) {
   var commentExistingNotifications = commentNotifications.html();
-  var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
   var commentNewNotificationHtml = `
     <li class="notification active px-3">
         <div class="media">
@@ -36,13 +37,9 @@ channel.bind('Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', 
         </div>
     </li>
   `;
-  notifications.html(commentNewNotificationHtml + commentExistingNotifications);
+  commentnotifications.html(commentNewNotificationHtml + commentExistingNotifications);
   commentNotificationsCount += 1;
-  commentNotificationsCountElem.attr('data-count', commentNotificationsCount);
-  commentNotificationsWrapper.find('.notif-count').text(commentNotificationsCount);
+  commentNotificationsCountElem.attr('comment-data-count', commentNotificationsCount);
+  commentNotificationsWrapper.find('.comment-count').text(commentNotificationsCount);
   commentNotificationsWrapper.show();
 });
-window.Echo.private('App.User.'.userId)
-    .notification((notification) => {
-        console.log(notification.type);
-    });

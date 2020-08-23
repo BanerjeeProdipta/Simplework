@@ -63,8 +63,8 @@ class PaymentReceived extends Notification
     }
 
     public function toNexmo($notifiable)
-{
-    return (new NexmoMessage)
+    {
+        return (new NexmoMessage)
                 ->content('Simplework payment SMS notification');
-}
+    }
 }
