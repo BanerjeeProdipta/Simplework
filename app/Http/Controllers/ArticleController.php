@@ -11,7 +11,9 @@ use App\Events\NewArticle;
 use App\Tag;
 use App\User;
 use App\Reply;
+use Illuminate\Support\Facades\File;
 use Image;
+
 class ArticleController extends Controller
 {
    
@@ -102,6 +104,8 @@ class ArticleController extends Controller
       public function destroy(Article $article)
       {
         $this->authorize('delete', $article);
+        $image_path ='uploads/articles/'.$article->photo_name;
+        File::delete($image_path);
         $article->delete();
         return redirect('/articles')->with('danger','Your article has been deleted');
       }

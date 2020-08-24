@@ -65,6 +65,15 @@
                         @enderror
 					</div>
 				</div>
+				{{-- <div class="form-group row">
+					<label for="image" class="col-md-2 col-form-label text-md-right">{{ __('Image') }}</label>
+					<div class="col-md-10">
+						<div class="custom-file">
+						<input type="file" name="image" class="custom-file-input">
+						<label class="custom-file-label">Upload an Image</label>
+						</div>
+					</div>
+				</div> --}}
 				<div >
 				
 					<button type="submit" class="btn btn-primary" style="float:right">Submit</button>
