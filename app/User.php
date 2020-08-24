@@ -51,7 +51,10 @@ class User extends Authenticatable
     {
         return '+880 1303 848453';
     }
-    
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'App.User.'.$this->id;
+    }
 
 }
 

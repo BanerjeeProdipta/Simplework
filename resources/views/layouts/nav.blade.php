@@ -120,4 +120,4 @@
 </script>    
 @endauth
 <script type="text/javascript" src="{{ asset('js/new-article.js') }}" ></script>
-<script type="text/javascript" src="{{ asset('js/new-comment.js') }}" ></script>
+{{-- <script type="text/javascript" src="{{ asset('js/new-comment.js') }}" ></script> --}}

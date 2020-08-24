@@ -38,10 +38,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
+    // forceTLS: true
 // // });
 // import Echo from 'laravel-echo'
-
 // window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
@@ -49,5 +48,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     key: '5f53220af298e18653c8',
 //     cluster: 'ap2',
 //     encrypted: true,
-//     authEndpoint: "/public/broadcasting/auth"
+//     forceTLS: true,
+//     authEndpoint: '/pusher/auth'
+
 // });

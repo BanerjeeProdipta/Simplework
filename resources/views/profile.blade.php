@@ -72,6 +72,7 @@
             </div>
     
         </div>	
+        
         <h1>Replies on my article</h1>
         <br>
         <ul>
@@ -114,8 +115,9 @@
             <li>You have no comments on your at the moment.</li>
             @endforelse
         </ul>
+        </div>
     </div>
-</div>
+
 </body>
 <div>
 @include('layouts.footer')

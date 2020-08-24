@@ -1,5 +1,3 @@
-authEndpoint: "../broadcasting/auth"
-
 var commentNotificationsWrapper   = $('.dropdown-comment');
 var commentNotificationsToggle    = commentNotificationsWrapper.find('a[data-toggle]');
 var commentNotificationsCountElem = commentNotificationsToggle.find('i[comment-data-count]');
@@ -10,12 +8,18 @@ if (commentNotificationsCount <= 0) {
 //   commentNotificationsWrapper.hide();
 }
 
+Pusher.channel_auth_endpoint = "/pusher.php";
 // Enable pusher logging - don't include this in production
 Pusher.logToConsole = true;
 
-var pusher = new Pusher('5f53220af298e18653c8', {
+var pusher  = new Pusher("5f53220af298e18653c8",{
   cluster: 'ap2' ,
-  encrypted: true
+  encrypted: true,
+  auth: {
+      headers: {
+          'X-CSRF-Token': '{{ csrf_token() }}'
+      }
+  }
 });
 
 // Subscribe to the channel we specified in our Laravel Event

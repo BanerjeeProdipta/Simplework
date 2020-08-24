@@ -42,19 +42,16 @@ class ReplyController extends Controller
     public function store( Article $article, Reply $replies, Request $request)
     {
         $this->validateReply();
-        if (Auth::check()) {
-            $replies->article_id = $article->id;
-            $replies->user_id = auth()->id();
-            $replies->reply = $request->reply;
-            $replies->save();
-            // Notification::send($article->user, new ArticleReply($article->user_id, $article->title, auth()->user()->name, $replies->reply ));
-            $article->user->notify(new ArticleReply($article->id, $article->title, auth()->user()->name, $replies->reply ));
-            // request()->user()->notify(new ArticleReply($article->user_id, $article->title, auth()->user()->name, $replies->reply ));
-            return redirect()->back()->with('success','Your comment has been published');
-        }
-        else {
-            return redirect()->back()->with('Error','Something wrong');
-        }
+        
+        $replies->article_id = $article->id;
+        $replies->user_id = auth()->id();
+        $replies->reply = $request->reply;
+        $replies->save();
+        // Notification::send($article->user, new ArticleReply($article->user_id, $article->title, auth()->user()->name, $replies->reply ));
+        $article->user->notify(new ArticleReply($article->id, $article->title, auth()->user()->name, $replies->reply ));
+        // request()->user()->notify(new ArticleReply($article->user_id, $article->title, auth()->user()->name, $replies->reply ));
+        return redirect()->back()->with('success','Your comment has been published');
+    
 
     }
 
